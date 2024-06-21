@@ -16,14 +16,14 @@ Action buttons (Previous/Save/Next) can be shown "top", "bottom" or "both":
   </flow>
 
   <stage name="details">
-  	<component id="creators"><field ref="creators" /></component>
-  	<component id="title"><field ref="title" /></component>
-  	<component id="description"><field ref="description" /></component>
-  	<component id="version"><field ref="version" required="yes" /></component>
-  	<component id="controller"><field ref="controller" /></component>
-  	<component id="requirements"><field ref="requirements" /></component>
-  	<component id="home_page"><field ref="home_page" /></component>
-  	<component id="install" type="FileSelector" path="{$config{base_path}}/lib" document="install"></component>
+  	<component id="c_creators"><field ref="creators" /></component>
+  	<component id="c_title"><field ref="title" /></component>
+  	<component id="c_description"><field ref="description" /></component>
+  	<component id="c_version"><field ref="version" required="yes" /></component>
+  	<component id="c_controller"><field ref="controller" /></component>
+  	<component id="c_requirements"><field ref="requirements" /></component>
+  	<component id="c_home_page"><field ref="home_page" /></component>
+  	<component id="c_install" type="FileSelector" path="{$config{base_path}}/lib" document="install"></component>
   </stage>
 
 </workflow>
