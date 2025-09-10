@@ -2,9 +2,9 @@ use EPrints::DataObj::EPM;
 use EPrints::EPM::Source;
 
 $c->{datasets}->{epm} = {
-        sqlname => "epm",
-        class => "EPrints::DataObj::EPM",
-        virtual => 1,
+	sqlname => "epm",
+	class => "EPrints::DataObj::EPM",
+	virtual => 1,
 };
 
 
@@ -14,9 +14,17 @@ $c->{epm}->{sources} = [] if !defined $c->{epm}->{sources};
 
 # Define the EPM sources
 push @{$c->{epm}->{sources}}, {
-                name => "EPrints Bazaar",
-                base_url => "https://bazaar.eprints.org",
+	name => "EPrints Bazaar",
+	base_url => "https://bazaar.eprints.org",
 };
+
+# Don't cache EPMs
+push @{$c->{citation_caching}->{excluded_dataobjs}}, 'epm';
+
+push @{$c->{roles}->{admin}}, (
+	"repository/epm", #EPrints Package Manager
+	"repository/epm-submit", #EPrints Package Manager - Bazaar Package Submission
+);
 
 =head1 COPYRIGHT
 
