@@ -18,6 +18,27 @@ push @{$c->{epm}->{sources}}, {
                 base_url => "https://bazaar.eprints.org",
 };
 
+$c->add_trigger(EP_TRIGGER_CGI_COUNTER, sub {
+	my( %params ) = @_;
+	my $repo = $params{repository};
+	my $content = ${$params{content}};
+
+	if( $repo->dataset( 'epm' ) ) {
+		$content .= "epm: ";
+		my $first = 1;
+		$repo->dataset( 'epm' )->dataobj_class->map($repo, sub
+		{
+			my( undef, undef, $epm ) = @_;
+			$content .= "; " if !$first;
+			$first = 0;
+			$content .= $epm->value( "epmid" ) . "=" . $epm->value( "version" );
+		});
+		$content .= "\n";
+	}
+
+	${$params{content}} = $content;
+});
+
 =head1 COPYRIGHT
 
 =for COPYRIGHT BEGIN
